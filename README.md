@@ -25,7 +25,8 @@ StatsBomb's free event data. A logistic regression model reaches a log loss of
 - Freeze-frame features (defenders in the shot path, keeper position) were the biggest improvement.
 - Logistic regression matched or beat gradient boosting at this data size, and is easier to explain.
 - Context features (first-time shots, play pattern, pressure) added very little.
-- The model is well calibrated: predicted probabilities match actual goal rates.
+- The model is well calibrated: predicted probabilities closely match actual goal rates, with slight over-prediction on the highest-quality chances (about 37% predicted vs. 34% actual).
+- Distance from goal is the dominant driver of the model. Distance, angle, and their interaction are all derived from shot location and overlap heavily, so individual coefficients among them shouldn't be over-interpreted; the freeze-frame features (defenders in the shot path, keeper position) add independent signal.
 
 ## Method
 Data: StatsBomb open data via `statsbombpy`. Penalties and shootouts excluded.
