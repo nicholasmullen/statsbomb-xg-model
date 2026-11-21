@@ -41,3 +41,4 @@ Evaluation: 5-fold cross-validation, log loss and ROC AUC, calibration curves.
 1. `python -m venv .venv` and activate it
 2. `pip install -r requirements.txt`
 3. Run the notebooks in order (data is downloaded from StatsBomb, not stored in this repo)
+-     
