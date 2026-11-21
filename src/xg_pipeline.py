@@ -72,7 +72,13 @@ def build_features(shots):
     shots["is_header"] = (shots.shot_body_part == "Head").astype(int)
     shots = shots.join(shots.apply(_freeze_features, axis=1))
 
+    flags = ["shot_first_time", "under_pressure", "shot_one_on_one",
+             "shot_follows_dribble", "shot_aerial_won", "shot_open_goal"]
+    for c in flags:
+        shots[c] = shots[c].eq(True).astype(int) if c in shots else 0
+
     cols = ["match_id", "player", "team", "x", "y", "distance", "angle", "is_header",
             "shot_type", "goal", "shot_statsbomb_xg",
-            "defenders_in_cone", "gk_dist_to_goal", "nearest_defender"]
+            "defenders_in_cone", "gk_dist_to_goal", "nearest_defender",
+            "shot_technique", "play_pattern"] + flags
     return shots[cols].reset_index(drop=True)
